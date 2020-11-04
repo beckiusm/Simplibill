@@ -4,10 +4,21 @@ export const StorageContext = createContext(null);
 
 const StorageProvider = ({children}) => {
 
-    const [token, setToken] = useState('');
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [customerData, setCustomerData] = useState(null);
+    const [userData, setUserData] = useState(null);
+
+    const contextValues = {
+        isAuthenticated,
+        setIsAuthenticated,
+        customerData,
+        setCustomerData,
+        userData,
+        setUserData
+    }
 
     return (
-        <StorageContext.Provider value={{token, setToken}}>
+        <StorageContext.Provider value={contextValues}>
             {children}
         </StorageContext.Provider>
     );

@@ -1,11 +1,11 @@
 import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
 
-import {TokenContext} from '../contexts/TokenContext'
+import {StorageContext} from '../contexts/StorageContext'
 
 export default function Navbar() {
-  const {token} = useContext(TokenContext)
-  console.log('token', token)
+  const {userData} = useContext(StorageContext)
+  console.log('token', userData)
 
   return (
     <nav className='navbar navbar-expand-sm navbar-light bg-light'>
@@ -33,9 +33,9 @@ export default function Navbar() {
           
         </ul>
         {
-          token && 
+            userData &&
           <div className='nav-item'>
-            <span className='nav-item'>Loggen in! (token)</span>
+            <span className='nav-item'>Loggen in! (userData)</span>
           </div>
         }
       </div>
