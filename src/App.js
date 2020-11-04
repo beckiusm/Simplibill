@@ -6,23 +6,22 @@ import {Switch, Route} from "react-router-dom";
 
 function App() {
 
-  return (
-    <div className='container'>
-      <TokenProvider>
-        <Switch>
-          <Route path='/home'>
-              <h1>Home</h1>
-          </Route>
-            <Route path='/customers/:id'>
-            </Route>
-          <Route path='/customers'>
-
-          </Route>
-            <Route path='/' component={Login} />
-        </Switch>
-      </TokenProvider>
-    </div>
-  );
+    return (
+        <div className='container'>
+            <TokenProvider>
+                <Switch>
+                    <Route path='/home'>
+                        <h1>Home</h1>
+                    </Route>
+                    <Route path='/customers/:id'>
+                    </Route>
+                    <Route path='/customers'>
+                    </Route>
+                    <Route path='/' component={Login}/>
+                </Switch>
+            </TokenProvider>
+        </div>
+    );
 }
 
 export default App;
