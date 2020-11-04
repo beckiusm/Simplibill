@@ -4,7 +4,7 @@ import TokenProvider from "./contexts/TokenContext";
 
 function App() {
   return (
-    <div className='container-fluid'>
+    <div className='container'>
       <TokenProvider>
         <Switch>
           <Route path='/'>
