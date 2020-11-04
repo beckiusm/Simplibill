@@ -1,9 +1,14 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
 
+import {TokenContext} from '../contexts/TokenContext'
+
 export default function Navbar() {
+  const {token} = useContext(TokenContext)
+  console.log('token', token)
+
   return (
-    <nav className='navbar navbar-expand-lg navbar-light bg-light'>
+    <nav className='navbar navbar-expand-md navbar-light bg-light'>
       <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
         <span className='navbar-toggler-icon'></span>
       </button>
@@ -16,6 +21,12 @@ export default function Navbar() {
             <Link to='/home' className='nav-link'>Home</Link>
           </li>
         </ul>
+        {
+          token && 
+          <div className='nav-item'>
+            <span className='nav-link'>I´m logged in</span>
+          </div>
+        }
       </div>
       
     </nav>
