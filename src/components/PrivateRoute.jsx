@@ -1,13 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Redirect, Route} from "react-router-dom";
-import User from "../data/User";
+import {StorageContext} from "../contexts/StorageContext";
 
 const PrivateRoute = ({component: Component, ...rest}) => {
-    const token = User.loadToken();
+    const {isAuthenticated} = useContext(StorageContext);
     return <Route
         {...rest}
         render={props =>(
-            token ? (
+            isAuthenticated ? (
                 <Component {...props} />
             ) : (
                 <Redirect to='/'/>

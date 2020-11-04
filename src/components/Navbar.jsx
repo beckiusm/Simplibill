@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import {StorageContext} from '../contexts/StorageContext'
 
 export default function Navbar() {
-  const {userData} = useContext(StorageContext)
+  const {userData, isAuthenticated} = useContext(StorageContext)
   console.log('token', userData)
 
   return (
@@ -33,7 +33,7 @@ export default function Navbar() {
           
         </ul>
         {
-            userData &&
+            isAuthenticated &&
           <div className='nav-item'>
             <span className='nav-item'>Loggen in! (userData)</span>
           </div>

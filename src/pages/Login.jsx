@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import User from "../data/User";
+import {StorageContext} from "../contexts/StorageContext";
 
 const Login = ({history}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const {setIsAuthenticated} = useContext(StorageContext);
 
     async function loginUser(event) {
         event.preventDefault();
@@ -13,11 +16,13 @@ const Login = ({history}) => {
         }
         const data = await response.json();
         User.saveToken(data.token);
+        setIsAuthenticated(true);
         history.push('/home');
     }
 
     useEffect(() => {
         if(User.loadToken()) {
+            setIsAuthenticated(true);
             history.push('/home');
         }
     }, [])
