@@ -1,7 +1,8 @@
-import React, {Switch, Route, useContext} from 'react';
+import React from 'react';
+
 import Login from "./pages/Login";
-import TokenProvider, {TokenContext} from "./contexts/TokenContext";
-import {Redirect} from "react-router-dom";
+import TokenProvider from "./contexts/TokenContext";
+import {Switch, Route} from "react-router-dom";
 
 function App() {
 
@@ -9,18 +10,15 @@ function App() {
     <div className='container'>
       <TokenProvider>
         <Switch>
-          <Route path='/'>
-            {token ? <Redirect to='home'/> : <Login/>}
-          </Route>
           <Route path='/home'>
               <h1>Home</h1>
           </Route>
+            <Route path='/customers/:id'>
+            </Route>
           <Route path='/customers'>
 
           </Route>
-          <Route path='/customers/:id'>
-
-          </Route>
+            <Route path='/' component={Login} />
         </Switch>
       </TokenProvider>
     </div>
