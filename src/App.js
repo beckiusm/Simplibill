@@ -1,25 +1,21 @@
 import React from 'react';
-
 import Login from "./pages/Login";
-import TokenProvider from "./contexts/TokenContext";
+import StorageProvider from "./contexts/StorageContext";
 import {Switch, Route} from "react-router-dom";
+import Home from "./pages/Home";
+import PrivateRoute from "./components/PrivateRoute";
+import DetailCustomer from "./pages/DetailCustomer";
 
 function App() {
-
     return (
         <div className='container'>
-            <TokenProvider>
+            <StorageProvider>
                 <Switch>
-                    <Route path='/home'>
-                        <h1>Home</h1>
-                    </Route>
-                    <Route path='/customers/:id'>
-                    </Route>
-                    <Route path='/customers'>
-                    </Route>
+                    <PrivateRoute path='/home' component={Home}/>
+                    <PrivateRoute path='/customer/:id' component={DetailCustomer}/>
                     <Route path='/' component={Login}/>
                 </Switch>
-            </TokenProvider>
+            </StorageProvider>
         </div>
     );
 }

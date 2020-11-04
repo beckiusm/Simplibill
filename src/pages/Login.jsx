@@ -1,11 +1,9 @@
-import React, {useContext, useState, useEffect} from 'react';
-import {TokenContext} from "../contexts/TokenContext";
+import React, { useState, useEffect } from 'react';
 import User from "../data/User";
 
 const Login = ({history}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const {token, setToken} = useContext(TokenContext);
 
     async function loginUser(event) {
         event.preventDefault();
@@ -14,9 +12,15 @@ const Login = ({history}) => {
             return;
         }
         const data = await response.json();
-        setToken(data.token);
+        User.saveToken(data.token);
         history.push('/home');
     }
+
+    useEffect(() => {
+        if(User.loadToken()) {
+            history.push('/home');
+        }
+    }, [])
 
     return (
         <div className='row justify-content-md-center'>

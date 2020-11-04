@@ -15,6 +15,14 @@ class User {
             body: JSON.stringify({email, password})
         });
     }
+
+    saveToken(token) {
+        sessionStorage.setItem('JWT_TOKEN', token);
+    }
+
+    loadToken() {
+        return sessionStorage.getItem('JWT_TOKEN')
+    }
 }
 
 export default new User();
