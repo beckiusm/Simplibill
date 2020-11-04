@@ -1,23 +1,26 @@
 import React, {Switch, Route} from 'react-router-dom';
 import Login from "./pages/Login";
+import {TokenContext} from "./contexts/TokenContext";
 
 function App() {
   return (
     <div className='container-fluid'>
-      <Switch>
-        <Route path='/'>
-          <Login/>
-        </Route>
-        <Route path='/home'>
+      <TokenContext>
+        <Switch>
+          <Route path='/'>
+            <Login/>
+          </Route>
+          <Route path='/home'>
 
-        </Route>
-        <Route path='/customers'>
+          </Route>
+          <Route path='/customers'>
 
-        </Route>
-        <Route path='/customers/:id'>
+          </Route>
+          <Route path='/customers/:id'>
 
-        </Route>
-      </Switch>
+          </Route>
+        </Switch>
+      </TokenContext>
     </div>
   );
 }
