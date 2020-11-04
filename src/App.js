@@ -1,11 +1,11 @@
 import React, {Switch, Route} from 'react-router-dom';
 import Login from "./pages/Login";
-import {TokenContext} from "./contexts/TokenContext";
+import TokenProvider from "./contexts/TokenContext";
 
 function App() {
   return (
     <div className='container-fluid'>
-      <TokenContext>
+      <TokenProvider>
         <Switch>
           <Route path='/'>
             <Login/>
@@ -20,7 +20,7 @@ function App() {
 
           </Route>
         </Switch>
-      </TokenContext>
+      </TokenProvider>
     </div>
   );
 }
