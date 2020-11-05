@@ -11,6 +11,7 @@ const Login = ({history}) => {
     async function getUserInformation() {
         const response = await User.getUserInformation();
         if(response.status !== 200) {
+            setIsAuthenticated(false);
             return;
         }
         setUserData(await response.json());
