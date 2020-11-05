@@ -41,10 +41,7 @@ const Login = ({history}) => {
     }
 
     useEffect(() => {
-        if(User.loadToken()) {
-            setIsAuthenticated(true);
-            history.push('/home');
-        }
+        if(User.loadToken()) loginUser();
     }, [])
 
     return (
