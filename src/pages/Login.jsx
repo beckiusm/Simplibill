@@ -6,18 +6,38 @@ const Login = ({history}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const {setIsAuthenticated} = useContext(StorageContext);
+    const {setIsAuthenticated, setUserData} = useContext(StorageContext);
 
-    async function loginUser(event) {
+    async function getUserInformation() {
+        const response = await User.getUserInformation();
+        if(response.status !== 200) {
+            return;
+        }
+        setUserData(await response.json());
+    }
+
+    async function loginUser() {
+        await getUserInformation();
+        setIsAuthenticated(true);
+        history.push('/home');
+    }
+
+    async function authenticateUser(event) {
         event.preventDefault();
+        const token = await getToken();
+        if(!token) return;
+        User.saveToken(token);
+        loginUser();
+    }
+
+
+    async function getToken() {
         const response = await User.getToken(email, password);
         if(response.status !== 200) {
             return;
         }
         const data = await response.json();
-        User.saveToken(data.token);
-        setIsAuthenticated(true);
-        history.push('/home');
+        return data.token;
     }
 
     useEffect(() => {
@@ -42,7 +62,7 @@ const Login = ({history}) => {
                         <label htmlFor="exampleInputPassword1">Password</label>
                         <input type="password" className="form-control" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
                     </div>
-                    <button type="submit" className="btn btn-primary" onClick={loginUser}>Login</button>
+                    <button type="submit" className="btn btn-primary" onClick={authenticateUser}>Login</button>
                 </form>
             </div>
         </div>

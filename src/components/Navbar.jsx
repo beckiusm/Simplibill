@@ -35,7 +35,7 @@ export default function Navbar() {
         {
             isAuthenticated &&
           <div className='nav-item'>
-            <span className='nav-item'>Loggen in! (userData)</span>
+            <span className='nav-item'>Welcome {userData.firstName} {userData.lastName}</span>
           </div>
         }
       </div>

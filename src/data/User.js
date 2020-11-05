@@ -1,11 +1,25 @@
 class User {
     BASE_URL = 'https://frebi.willandskill.eu/';
     AUTH_URL = `${this.BASE_URL}api-token-auth/`;
+    API_URL = `${this.BASE_URL}api/v1/`;
 
     getPublicHeaders() {
         return {
             'Content-Type': 'application/json'
         }
+    }
+
+    getPrivateHeaders() {
+        return {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.loadToken()}`
+        }
+    }
+
+    getUserInformation() {
+        return fetch(`${this.API_URL}me`, {
+            headers: this.getPrivateHeaders()
+        })
     }
 
     getToken(email, password) {
@@ -21,7 +35,7 @@ class User {
     }
 
     loadToken() {
-        return sessionStorage.getItem('JWT_TOKEN')
+        return sessionStorage.getItem('JWT_TOKEN');
     }
 }
 
