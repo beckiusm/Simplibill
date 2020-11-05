@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
-import './Navbar.scss';
+import {Tooltip} from "./Navbar.styled";
 
 import {StorageContext} from '../contexts/StorageContext'
 
@@ -36,7 +36,7 @@ export default function Navbar() {
         {
             isAuthenticated &&
           <div className='nav-item'>
-              <span className='nav-item'><span className='tooltip2' data-text={userData.email}>Welcome {userData.firstName} {userData.lastName}</span></span>
+              <span className='nav-item'><Tooltip content={userData.email}>Welcome {userData.firstName} {userData.lastName}</Tooltip></span>
           </div>
         }
       </div>

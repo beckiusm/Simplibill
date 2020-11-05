@@ -1,10 +1,12 @@
-.tooltip2 {
+import styled from 'styled-components';
+
+export const Tooltip = styled.div`
   position: relative; /* making the .tooltip span a container for the tooltip text */
   border-bottom: 1px dashed #000; /* little indicater to indicate it's hoverable */
   cursor: pointer;
 
   &:before {
-    content: attr(data-text); /* here's the magic */
+    content: "${({content}) => content}"; /* here's the magic */
     position: absolute;
 
     /* vertically center */
@@ -57,8 +59,7 @@
 
     display:none;
   }
-
   &:hover:before,&:hover:after {
     display:block;
   }
-}
+`;
