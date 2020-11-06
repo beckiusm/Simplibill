@@ -6,6 +6,7 @@ import {Switch, Route} from "react-router-dom";
 import Home from "./pages/Home";
 import PrivateRoute from "./components/PrivateRoute";
 import DetailCustomer from "./pages/DetailCustomer";
+import EditCustomer from './pages/EditCustomer';
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                 <Switch>
                     <PrivateRoute path='/home' component={Home}/>
                     <PrivateRoute path='/customer/:id' component={DetailCustomer}/>
+                    <PrivateRoute path='/edit/:id' component={EditCustomer}/>
                     <Route path='/' component={Login}/>
                 </Switch>
             </StorageProvider>

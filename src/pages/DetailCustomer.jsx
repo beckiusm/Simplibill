@@ -1,12 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-const DetailCustomer = (props) => {
-    const customerId = props.match.params.id;
+export default function DetailCustomer() {
     return (
         <div>
-            {console.log(customerId)}
+            
         </div>
-    );
-};
-
-export default DetailCustomer;
+    )
+}
