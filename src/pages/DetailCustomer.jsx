@@ -24,7 +24,7 @@ export default function DetailCustomer(props) {
 
     return (
         <>
-            { customerInfo && <CustomerSingle customer={customerInfo} /> }
+            { customerInfo && <CustomerSingle customerId={customerId} customer={customerInfo} /> }
         </>
     )
 }

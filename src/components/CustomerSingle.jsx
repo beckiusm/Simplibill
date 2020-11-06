@@ -5,7 +5,10 @@ const CustomerStyled = styled.div`
   h1 {
     font-weight: normal;
     margin-top: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
+  }
+  .edit {
+    margin-bottom: 20px;
   }
   .info-item {
     margin: 15px 5px;
@@ -20,11 +23,14 @@ const CustomerStyled = styled.div`
 `
 
 export default function CustomerSingle(props) {
-  const { customer } = props
+  const { customer, customerId } = props
 
   return (
     <CustomerStyled className="container text-center my-5">
       <h1> { customer.name } </h1>
+      <div className="edit">
+        <a href={`/edit/${customerId}`}>edit</a>
+      </div>
       <div className="info-item">
         <div className="info-item-content"> { customer.organisationNr } </div>
         <div className="info-item-title">Organization nr.</div>
