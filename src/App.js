@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import PrivateRoute from "./components/PrivateRoute";
 import DetailCustomer from "./pages/DetailCustomer";
 import EditCustomer from './pages/EditCustomer';
+import AddCustomer from './pages/AddCustomer';
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                     <PrivateRoute path='/home' component={Home}/>
                     <PrivateRoute path='/customer/:id' component={DetailCustomer}/>
                     <PrivateRoute path='/edit/:id' component={EditCustomer}/>
+                    <PrivateRoute path='/addCustomer' component={AddCustomer}/>
                     <Route path='/' component={Login}/>
                 </Switch>
             </StorageProvider>

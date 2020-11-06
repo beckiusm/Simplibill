@@ -10,7 +10,8 @@ const Home = () => {
             <h1>Home</h1>
             <ul>
                 <li><Link to='/customer/1'>Temp Link</Link></li>
-                <li><Link to='/edit/3359'>Ändra kund</Link></li>
+                <li><Link to='/edit/3375'>Ändra kund</Link></li>
+                <li><Link to='/addCustomer'>Lägg till ny kund</Link></li>
             </ul>
         </div>
     );
