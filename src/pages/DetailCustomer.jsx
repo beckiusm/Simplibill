@@ -8,8 +8,13 @@ export default function DetailCustomer(props) {
     
     function getCustomerInfo() {
         const privateHeaders = User.getPrivateHeaders()
-        const temp = Customer.fetchCustomerData(customerId, privateHeaders)
-        console.log( temp )
+        Customer.fetchCustomerData(customerId, privateHeaders)
+        .then( response => {
+            if(response.status !== 200) 
+                console.log({error: response.statusText})
+            return response.json()
+        })
+        .then( data => setCustomerInfo(data))
     }
 
     useEffect( () => {
@@ -18,7 +23,12 @@ export default function DetailCustomer(props) {
 
     return (
         <div>
-            customerId: {customerId}
+            <h1>
+                customerId: {customerId}
+            </h1>
+            <p>
+                Customer Name: {customerInfo.name}
+            </p>
         </div>
     )
 }
