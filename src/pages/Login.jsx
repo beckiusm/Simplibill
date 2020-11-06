@@ -3,6 +3,7 @@ import User from "../data/User";
 import {StorageContext} from "../contexts/StorageContext";
 
 const Login = ({history}) => {
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -11,6 +12,7 @@ const Login = ({history}) => {
     async function getUserInformation() {
         const response = await User.getUserInformation();
         if(response.status !== 200) {
+            setIsAuthenticated(false);
             return;
         }
         setUserData(await response.json());
