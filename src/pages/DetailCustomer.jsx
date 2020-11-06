@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import CustomerSingle from '../components/CustomerSingle'
 import Customer from '../data/Customer'
 import User from '../data/User'
 
@@ -22,13 +23,8 @@ export default function DetailCustomer(props) {
     }, [])
 
     return (
-        <div>
-            <h1>
-                customerId: {customerId}
-            </h1>
-            <p>
-                Customer Name: {customerInfo.name}
-            </p>
-        </div>
+        <>
+            { customerInfo && <CustomerSingle customer={customerInfo} /> }
+        </>
     )
 }
