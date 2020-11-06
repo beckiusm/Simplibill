@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 
 const CustomerStyled = styled.div`
@@ -29,7 +30,7 @@ export default function CustomerSingle(props) {
     <CustomerStyled className="container text-center my-5">
       <h1> { customer.name } </h1>
       <div className="edit">
-        <a href={`/edit/${customerId}`}>edit</a>
+        <Link to={`/edit/${customerId}`}>edit</Link>
       </div>
       <div className="info-item">
         <div className="info-item-content"> { customer.organisationNr } </div>
