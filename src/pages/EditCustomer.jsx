@@ -6,7 +6,7 @@ const EditCustomer = (props) => {
 
     const customerId = props.match.params.id;
     const [activeCustomer, setActiveCustomer] = useState(null)
-    
+
 
     useEffect(() => {
 
@@ -43,11 +43,10 @@ const EditCustomer = (props) => {
     return (
         <div>
 
-            {/* <button onClick={tempGetCustomers}>Se kunder</button> */}
-            {activeCustomer && 
-            <FormCustomer 
-                handleInputChange={handleInputChange}
-                activeCustomer={activeCustomer}
+            {activeCustomer &&
+                <FormCustomer
+                    handleInputChange={handleInputChange}
+                    activeCustomer={activeCustomer}
                 />
             }
 

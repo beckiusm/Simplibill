@@ -24,9 +24,9 @@ export default function AddCustomer() {
     return (
         <div>
 
-                <FormCustomer 
+            <FormCustomer
                 handleInputChange={handleInputChange}
-                />
+            />
 
             <button className="btn btn-success float-right" onClick={saveData}>Spara</button>
         </div>

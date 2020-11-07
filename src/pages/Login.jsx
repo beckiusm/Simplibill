@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import User from "../data/User";
 import {StorageContext} from "../contexts/StorageContext";
 
-const Login = ({history}) => {
+const Login = ({history, location}) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -21,7 +21,11 @@ const Login = ({history}) => {
     async function loginUser() {
         await getUserInformation();
         setIsAuthenticated(true);
-        history.push('/home');
+        if(location.state && location.state.prevPath) {
+            history.push(location.state.prevPath)
+        } else {
+            history.push('/home');
+        }
     }
 
     async function authenticateUser(event) {
