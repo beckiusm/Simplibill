@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import CustomerList from '../components/CustomerList';
 
 const Home = () => {
     /**
@@ -10,6 +11,7 @@ const Home = () => {
     return (
         <div>
             <h1>Home</h1>
+            <CustomerList/>
             <ul>
                 <li><Link to={`/customer/${tempCustomerID}`}>Detail page for customer {tempCustomerID} </Link></li>
                 <li><Link to='/addCustomer'>Lägg till ny kund</Link></li>
