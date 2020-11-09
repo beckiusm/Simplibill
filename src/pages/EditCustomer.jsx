@@ -7,9 +7,9 @@ import Utilities from "../data/Utilities";
 
 const EditCustomer = (props) => {
 
-    const customerId = props.match.params.id;
+    const customerId = Number(props.match.params.id);
 
-    const {setCustomerListData, setCustomerData, customerData,customerListData} = useContext(StorageContext);
+    const {setCustomerListData, setCustomerData, customerData, customerListData} = useContext(StorageContext);
 
     async function getCustomerList() {
         const customerList = await User.fetchCustomerList();
