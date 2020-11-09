@@ -1,15 +1,20 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-
+import React, {useContext} from 'react'
+import {StorageContext} from "../contexts/StorageContext";
+import User from "../data/User";
 
 export default function ButtonDeleteCustomer(props) {
 
-    function handleDeleteCustomer(){
-        
+    const {setCustomerData} = useContext(StorageContext);
+    async function getCustomerList() {
+        const customerList = await User.fetchCustomerList();
+        setCustomerData(customerList)
+    }
 
+    function handleDeleteCustomer(){
         const url = `${props.User.API_URL}customers/${props.customerId}/`
         fetch(url, { headers: props.User.getPrivateHeaders(), method: "DELETE"})
-            .then(() => {
+            .then(async () => {
+                await getCustomerList()
                 props.history.push(`/home`)
             })
 

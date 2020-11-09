@@ -1,15 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import User from "../data/User";
 import FormCustomer from '../components/FormCustomer';
+import {StorageContext} from "../contexts/StorageContext";
 export default function AddCustomer(props) {
 
     const [form, setForm] = useState(null)
+
+    const {setCustomerData} = useContext(StorageContext);
+
+    async function getCustomerList() {
+        const customerList = await User.fetchCustomerList();
+        setCustomerData(customerList)
+    }
 
     function saveData() {
         const url = `${User.API_URL}customers/`
         fetch(url, { headers: User.getPrivateHeaders(), method: "POST", body: JSON.stringify(form) })
             .then(res => res.json())
-            .then(data => {
+            .then(async data => {
+                await getCustomerList();
                 props.history.push(`/customer/${data.id}`)
             })
     }

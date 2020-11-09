@@ -1,26 +1,40 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import CustomerSingle from '../components/CustomerSingle'
-import Customer from '../data/Customer'
 import User from '../data/User'
+import {StorageContext} from "../contexts/StorageContext";
 
 export default function DetailCustomer(props) {
+
+    const {customerData} = useContext(StorageContext);
     const [customerInfo, setCustomerInfo] = useState(null)
-    const customerId = props.match.params.id
+    const customerId = Number(props.match.params.id)
+
+    function getCustomerInfoFromContext() {
+        if(!customerData) return false;
+        return customerData.find(customer => customer.id === customerId);
+    }
     
     function getCustomerInfo() {
-        const privateHeaders = User.getPrivateHeaders()
-        Customer.fetchCustomerData(customerId, privateHeaders)
-        .then( response => {
-            if(response.status !== 200) 
-                console.log({error: response.statusText})
-            return response.json()
-        })
-        .then( data => setCustomerInfo(data))
+        const customerData = getCustomerInfoFromContext()
+        if(!customerData) {
+            User.fetchCustomerData(customerId)
+                .then( response => {
+                    if(response.status !== 200)
+                        console.log({error: response.statusText})
+                    return response.json()
+                })
+                .then( data => setCustomerInfo(data))
+        } else {
+            setCustomerInfo(customerData);
+        }
+
     }
+
 
     useEffect( () => {
         getCustomerInfo()
-    }, [])
+    }, // eslint-disable-next-line
+        [])
 
     return (
         <>

@@ -1,28 +1,28 @@
-import React, {useState, useEffect} from 'react'
-import Customer from '../data/Customer'
+import React, {useEffect, useContext} from 'react'
 import User from '../data/User'
 import CustomerListItem from './CustomerListItem'
+import {StorageContext} from "../contexts/StorageContext";
 
 export default function CustomerList() {
 
-    const [customerListData, setCustomerListData] = useState(null)
+    const {setCustomerData, customerData} = useContext(StorageContext);
 
-    const headers = User.getPrivateHeaders()
-
-    function getCustomerList() {
-        Customer.fetchCustomerList(headers)
-        .then(res => res.json())
-        .then(data => setCustomerListData(data.results))
+    async function getCustomerList() {
+        const customerList = await User.fetchCustomerList();
+        setCustomerData(customerList)
     }
 
     useEffect(() => {
-        getCustomerList()
-    }, [])
+        if(!customerData) {
+            getCustomerList();
+        }
+    }, // eslint-disable-next-line
+        [])
 
     return (
         <ul className="list-group">
-            {customerListData && customerListData.map((customerListItem, index) => {
-                return <CustomerListItem index={index} customerListItem={customerListItem}/>
+            {customerData && customerData.map((customerListItem, index) => {
+                return <CustomerListItem key={index} index={index} customerListItem={customerListItem}/>
             })}
         </ul>
     )

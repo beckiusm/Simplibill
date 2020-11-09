@@ -47,8 +47,10 @@ const Login = ({history, location}) => {
     }
 
     useEffect(() => {
-        if(User.loadToken()) loginUser();
-    }, [])
+        if(User.loadToken())
+            loginUser();
+    },// eslint-disable-next-line
+        [])
 
     return (
         <div className='row justify-content-md-center'>

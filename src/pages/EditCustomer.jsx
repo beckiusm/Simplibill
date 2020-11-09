@@ -1,15 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, {useState, useEffect, useContext} from 'react';
 import ButtonDeleteCustomer from '../components/ButtonDeleteCustomer';
 import FormCustomer from '../components/FormCustomer';
 import User from "../data/User";
+import {StorageContext} from "../contexts/StorageContext";
 
 const EditCustomer = (props) => {
 
     const customerId = props.match.params.id;
     const [activeCustomer, setActiveCustomer] = useState(null)
 
+    const {setCustomerData} = useContext(StorageContext);
+    async function getCustomerList() {
+        const customerList = await User.fetchCustomerList();
+        setCustomerData(customerList)
+    }
 
+    // eslint-disable-next-line
     useEffect(() => {
 
         const url = `${User.API_URL}customers/${customerId}/`
@@ -24,13 +30,15 @@ const EditCustomer = (props) => {
         return () => {
 
         }
-    }, [])
+    }, // eslint-disable-next-line
+        [])
 
     function saveData() {
         const url = `${User.API_URL}customers/${customerId}/`
         fetch(url, { headers: User.getPrivateHeaders(), method: "PUT", body: JSON.stringify(activeCustomer) })
             .then(res => res.json())
-            .then(() => {
+            .then(async () => {
+                await getCustomerList()
                 props.history.push(`/customer/${customerId}`)
             }
                 

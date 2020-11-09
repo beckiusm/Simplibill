@@ -37,6 +37,18 @@ class User {
     loadToken() {
         return sessionStorage.getItem('JWT_TOKEN');
     }
+
+    fetchCustomerData(customerId) {
+        const customerUrl = this.API_URL + 'customers/' + customerId + '/'
+        return fetch(customerUrl, { headers: this.getPrivateHeaders()})
+    }
+
+    fetchCustomerList() {
+        return fetch(this.API_URL + 'customers/', {
+            headers: this.getPrivateHeaders()
+        }).then(res => res.json())
+            .then(data => data.results)
+    }
 }
 
 export default new User();
