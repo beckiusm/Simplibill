@@ -42,8 +42,11 @@ const EditCustomer = (props) => {
 
     function saveData() {
         if(!Utilities.validateVatNr(customerData['vatNr'])) {
+            document.getElementById('vatNr').classList.add('is-invalid');
             console.error('Not a valid VatNr');
             return;
+        } else {
+            document.getElementById('vatNr').classList.add('is-valid');
         }
         const url = `${User.API_URL}customers/${customerId}/`
         fetch(url, { headers: User.getPrivateHeaders(), method: "PUT", body: JSON.stringify(customerData) })

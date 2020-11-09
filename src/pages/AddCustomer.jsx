@@ -16,8 +16,11 @@ export default function AddCustomer(props) {
 
     function saveData() {
         if(!Utilities.validateVatNr(form['vatNr'])) {
+            document.getElementById('vatNr').classList.add('is-invalid');
             console.error('Not a valid VatNr');
             return;
+        } else {
+            document.getElementById('vatNr').classList.add('is-valid');
         }
 
         const url = `${User.API_URL}customers/`
