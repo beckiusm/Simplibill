@@ -5,14 +5,17 @@ export const StorageContext = createContext(null);
 const StorageProvider = ({children}) => {
 
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [customerData, setCustomerData] = useState(null);
+    const [customerListData, setCustomerListData] = useState(null);
     const [userData, setUserData] = useState(null);
+    const [customerData, setCustomerData] = useState(null)
 
     const contextValues = {
-        isAuthenticated,
-        setIsAuthenticated,
         customerData,
         setCustomerData,
+        isAuthenticated,
+        setIsAuthenticated,
+        customerListData,
+        setCustomerListData,
         userData,
         setUserData
     }

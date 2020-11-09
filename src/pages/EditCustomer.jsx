@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useEffect, useContext} from 'react';
 import ButtonDeleteCustomer from '../components/ButtonDeleteCustomer';
 import FormCustomer from '../components/FormCustomer';
 import User from "../data/User";
@@ -7,59 +7,61 @@ import {StorageContext} from "../contexts/StorageContext";
 const EditCustomer = (props) => {
 
     const customerId = props.match.params.id;
-    const [activeCustomer, setActiveCustomer] = useState(null)
 
-    const {setCustomerData} = useContext(StorageContext);
+    const {setCustomerListData, setCustomerData, customerData,customerListData} = useContext(StorageContext);
+
     async function getCustomerList() {
         const customerList = await User.fetchCustomerList();
-        setCustomerData(customerList)
+        setCustomerListData(customerList)
     }
 
-    // eslint-disable-next-line
-    useEffect(() => {
+    function getCustomerInfoFromContext() {
+        if(!customerListData) return false;
+        return customerListData.find(customer => customer.id === customerId);
+    }
 
-        const url = `${User.API_URL}customers/${customerId}/`
-
-        fetch(url, { headers: User.getPrivateHeaders() })
-            .then(res => res.json())
-            .then(data => {
-                setActiveCustomer(data)
-
-            })
-
-        return () => {
-
+    function getCustomerInfo() {
+        const customer = getCustomerInfoFromContext()
+        if(!customer) {
+            User.fetchCustomerData(customerId)
+                .then( response => {
+                    if(response.status !== 200)
+                        console.log({error: response.statusText})
+                    return response.json()
+                })
+                .then( data => setCustomerData(data))
+        } else {
+            setCustomerData(customer);
         }
+    }
+    useEffect(() => {
+            getCustomerInfo();
     }, // eslint-disable-next-line
         [])
 
     function saveData() {
         const url = `${User.API_URL}customers/${customerId}/`
-        fetch(url, { headers: User.getPrivateHeaders(), method: "PUT", body: JSON.stringify(activeCustomer) })
+        fetch(url, { headers: User.getPrivateHeaders(), method: "PUT", body: JSON.stringify(customerData) })
             .then(res => res.json())
             .then(async () => {
                 await getCustomerList()
                 props.history.push(`/customer/${customerId}`)
-            }
-                
-            )
+            })
     }
-
 
     function handleInputChange(event) {
         const name = event.target.name
         const value = event.target.value
-        setActiveCustomer({ ...activeCustomer, [name]: value })
-
+        setCustomerData({ ...customerData, [name]: value })
     }
 
     return (
         <div>
             <ButtonDeleteCustomer history={props.history} customerId={customerId} User={User}></ButtonDeleteCustomer>
-            {activeCustomer &&
+            {customerData &&
                 <FormCustomer
                     handleInputChange={handleInputChange}
-                    activeCustomer={activeCustomer}
+                    customerData={customerData}
                 />
             }
             

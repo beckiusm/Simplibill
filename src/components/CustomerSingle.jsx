@@ -30,7 +30,7 @@ export default function CustomerSingle(props) {
     <CustomerStyled className="container text-center my-5">
       <h1> { customer.name } </h1>
       <div className="edit">
-        <Link to={`/edit/${customerId}`}>edit</Link>
+        <Link to={`/edit/${customerId}`} customer={customer}>edit</Link>
       </div>
       <div className="info-item">
         <div className="info-item-content"> { customer.organisationNr } </div>

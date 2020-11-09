@@ -1,33 +1,31 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, { useEffect, useContext} from 'react'
 import CustomerSingle from '../components/CustomerSingle'
 import User from '../data/User'
 import {StorageContext} from "../contexts/StorageContext";
 
 export default function DetailCustomer(props) {
 
-    const {customerData} = useContext(StorageContext);
-    const [customerInfo, setCustomerInfo] = useState(null)
+    const {customerListData, customerData, setCustomerData} = useContext(StorageContext);
     const customerId = Number(props.match.params.id)
 
     function getCustomerInfoFromContext() {
-        if(!customerData) return false;
-        return customerData.find(customer => customer.id === customerId);
+        if(!customerListData) return false;
+        return customerListData.find(customer => customer.id === customerId);
     }
-    
+
     function getCustomerInfo() {
-        const customerData = getCustomerInfoFromContext()
-        if(!customerData) {
+        const customer = getCustomerInfoFromContext()
+        if(!customer) {
             User.fetchCustomerData(customerId)
                 .then( response => {
                     if(response.status !== 200)
                         console.log({error: response.statusText})
                     return response.json()
                 })
-                .then( data => setCustomerInfo(data))
+                .then( data => setCustomerData(data))
         } else {
-            setCustomerInfo(customerData);
+            setCustomerData(customer);
         }
-
     }
 
 
@@ -38,7 +36,7 @@ export default function DetailCustomer(props) {
 
     return (
         <>
-            { customerInfo && <CustomerSingle customerId={customerId} customer={customerInfo} /> }
+            { customerData && <CustomerSingle customerId={customerId} customer={customerData} /> }
         </>
     )
 }

@@ -5,16 +5,15 @@ import {StorageContext} from "../contexts/StorageContext";
 
 export default function CustomerList() {
 
-    const {setCustomerData, customerData} = useContext(StorageContext);
+    const {setCustomerListData, customerListData} = useContext(StorageContext);
 
     async function getCustomerList() {
         const customerList = await User.fetchCustomerList();
-        setCustomerData(customerList)
-        console.log(customerData);
+        setCustomerListData(customerList)
     }
 
     useEffect(() => {
-        if(!customerData) {
+        if(!customerListData) {
             getCustomerList();
         }
     }, // eslint-disable-next-line
@@ -30,7 +29,7 @@ export default function CustomerList() {
                 </tr>
             </thead>
             <tbody>
-                {customerData && customerData.map((customerListItem, index) => {
+                {customerListData && customerListData.map((customerListItem, index) => {
                     return <CustomerListItem key={index} index={index} customerListItem={customerListItem}/>
                 })}
             </tbody>
