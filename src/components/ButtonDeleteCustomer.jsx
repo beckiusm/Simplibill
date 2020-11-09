@@ -25,7 +25,7 @@ export default function ButtonDeleteCustomer(props) {
         <br></br>
 
             <button className="btn btn-danger float-right" onClick={handleDeleteCustomer}>
-            Ta bort kund
+            Remove customer
             </button>
 
         </>

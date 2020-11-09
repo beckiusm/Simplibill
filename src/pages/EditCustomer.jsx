@@ -63,7 +63,7 @@ const EditCustomer = (props) => {
                 />
             }
             
-            <button className="btn btn-success float-right" onClick={saveData}>Spara</button>
+            <button className="btn btn-success float-right" onClick={saveData}>Save</button>
         
         </div>
     );

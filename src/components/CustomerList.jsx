@@ -10,6 +10,7 @@ export default function CustomerList() {
     async function getCustomerList() {
         const customerList = await User.fetchCustomerList();
         setCustomerData(customerList)
+        console.log(customerData);
     }
 
     useEffect(() => {

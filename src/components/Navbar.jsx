@@ -3,10 +3,15 @@ import { Link } from 'react-router-dom'
 import {Tooltip} from "./Navbar.styled";
 
 import {StorageContext} from '../contexts/StorageContext'
+import User from "../data/User";
 
 export default function Navbar() {
-  const {userData, isAuthenticated} = useContext(StorageContext)
-  console.log('token', userData)
+  const {userData, isAuthenticated, setIsAuthenticated} = useContext(StorageContext)
+
+    function Logout() {
+      User.removeToken();
+      setIsAuthenticated(false);
+    }
 
   return (
     <nav className='navbar navbar-expand-sm navbar-light bg-light'>
@@ -37,9 +42,14 @@ export default function Navbar() {
         </ul>
         {
           isAuthenticated &&
-          <div className='nav-item'>
-              <span className='nav-item'><Tooltip content={userData.email}>Welcome {userData.firstName} {userData.lastName}</Tooltip></span>
-          </div>
+          <>
+              <div className='nav-item'>
+                  <span className='nav-item'><Tooltip content={userData.email}>Welcome {userData.firstName} {userData.lastName}</Tooltip></span>
+              </div>
+              <div className="nav-item">
+                  <button className='nav-item btn btn-primary ml-2' onClick={Logout} >Logout</button>
+              </div>
+          </>
         }
       </div>
       

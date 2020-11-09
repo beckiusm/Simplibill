@@ -3,6 +3,8 @@ class User {
     AUTH_URL = `${this.BASE_URL}api-token-auth/`;
     API_URL = `${this.BASE_URL}api/v1/`;
 
+    JWT_TOKEN = 'JWT_TOKEN';
+
     getPublicHeaders() {
         return {
             'Content-Type': 'application/json'
@@ -31,11 +33,11 @@ class User {
     }
 
     saveToken(token) {
-        sessionStorage.setItem('JWT_TOKEN', token);
+        sessionStorage.setItem(this.JWT_TOKEN, token);
     }
 
     loadToken() {
-        return sessionStorage.getItem('JWT_TOKEN');
+        return sessionStorage.getItem(this.JWT_TOKEN);
     }
 
     fetchCustomerData(customerId) {
@@ -48,6 +50,10 @@ class User {
             headers: this.getPrivateHeaders()
         }).then(res => res.json())
             .then(data => data.results)
+    }
+
+    removeToken() {
+        sessionStorage.removeItem(this.JWT_TOKEN)
     }
 }
 

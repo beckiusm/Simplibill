@@ -10,12 +10,12 @@ export const Tooltip = styled.div`
     position: absolute;
 
     /* vertically center */
-    top: 50%;
+    top: 225%;
     transform: translateY(-50%);
 
     /* move to right */
-    left: 100%;
-    margin-left: 15px; /* and add a small left margin */
+    left: 0%;
+    margin-left: -15px; /* and add a small left margin */
 
     /* basic styles */
     width: 200px;
@@ -46,16 +46,16 @@ export const Tooltip = styled.div`
     position:absolute;
 
     /* position tooltip correctly */
-    left:100%;
+    left:50%;
     margin-left:-5px;
 
     /* vertically center */
-    top:50%;
+    top:100%;
     transform:translateY(-50%);
 
     /* the arrow */
     border:10px solid #000;
-    border-color: transparent black transparent transparent;
+    border-color: transparent transparent black transparent;
 
     display:none;
   }
