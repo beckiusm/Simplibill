@@ -20,7 +20,7 @@ export default function CustomerSingle(props) {
     <CustomerStyled className="container my-5">
       <h1 className="text-center"> { customer.name } </h1>
       <div className="edit text-center">
-        <Link to={`/edit/${customerId}`}>edit</Link>
+        <Link to={`/edit/${customerId}`}>Edit</Link>
       </div>
 
       <table className="table">
