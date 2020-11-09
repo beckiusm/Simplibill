@@ -11,55 +11,54 @@ const CustomerStyled = styled.div`
   .edit {
     margin-bottom: 20px;
   }
-  .info-item {
-    margin: 15px 5px;
-  }
-  .info-item-content {
-    font-size: 22px;
-  }
-  .info-item-title {
-    font-size: small;
-    color: #797979;
-  }
 `
 
 export default function CustomerSingle(props) {
   const { customer, customerId } = props
 
   return (
-    <CustomerStyled className="container text-center my-5">
-      <h1> { customer.name } </h1>
-      <div className="edit">
+    <CustomerStyled className="container  my-5">
+      <h1 className="text-center"> { customer.name } </h1>
+      <div className="edit text-center">
         <Link to={`/edit/${customerId}`}>edit</Link>
       </div>
-      <div className="info-item">
-        <div className="info-item-content"> { customer.organisationNr } </div>
-        <div className="info-item-title">Organization nr.</div>
-      </div>
-      <div className="info-item">
-        <div className="info-item-content"> { customer.vatNr } </div>
-        <div className="info-item-title">Var nr.</div>
-      </div>
-      <div className="info-item">
-        <div className="info-item-content"> { customer.reference } </div>
-        <div className="info-item-title">Reference</div>
-      </div>
-      <div className="info-item">
-        <div className="info-item-content"> { customer.paymentTerm } </div>
-        <p className="info-item-title">PaymentTerm</p>
-      </div>
-      <div className="info-item">
-        <div className="info-item-content"> { customer.website } </div>
-        <div className="info-item-title">Website</div>
-      </div>
-      <div className="info-item">
-        <div className="info-item-content"> { customer.email } </div>
-        <div className="info-item-title">E-mail</div>
-      </div>
-      <div className="info-item">
-        <div className="info-item-content"> { customer.phoneNumber } </div>
-        <div className="info-item-title">Phone Number</div>
-      </div>
+
+      <table className="table">
+        <tbody>
+          <tr>
+            <th>Organization nr.</th>
+            <td> { customer.organisationNr } </td>
+          </tr>
+          <tr>
+            <th>Var nr.</th>
+            <td> { customer.vatNr } </td>
+          </tr>
+          <tr>
+            <th>Reference</th>
+            <td> { customer.reference } </td>
+          </tr>
+          <tr>
+            <th>PaymentTerm</th>
+            <td> { customer.paymentTerm } </td>
+          </tr>
+          <tr>
+            <th>Website</th>
+            <td> { customer.website } </td>
+          </tr>
+          <tr>
+            <th>E-mail</th>
+            <td> { customer.email } </td>
+          </tr>
+          <tr>
+            <th>Phone Number</th>
+            <td> { customer.phoneNumber } </td>
+          </tr>
+        </tbody>
+
+      </table>
+
+    
+
     </CustomerStyled>
   )
 }
