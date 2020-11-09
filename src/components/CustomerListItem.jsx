@@ -6,8 +6,12 @@ export default function CustomerListItem(props) {
     const {customerListItem} = props
 
     return (
-        <Link to={`/customer/${customerListItem.id}`}>
-            <li className="list-group-item">{customerListItem.name}</li>
-        </Link>
+        <tr>
+            <td>
+                <Link to={`/customer/${customerListItem.id}`}>{customerListItem.name}</Link>
+            </td>
+            <td>{customerListItem.phoneNumber}</td>
+            <td>{customerListItem.email}</td>
+        </tr>
     )
 }
