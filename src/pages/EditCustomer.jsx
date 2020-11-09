@@ -3,6 +3,7 @@ import ButtonDeleteCustomer from '../components/ButtonDeleteCustomer';
 import FormCustomer from '../components/FormCustomer';
 import User from "../data/User";
 import {StorageContext} from "../contexts/StorageContext";
+import Utilities from "../data/Utilities";
 
 const EditCustomer = (props) => {
 
@@ -40,6 +41,10 @@ const EditCustomer = (props) => {
         [])
 
     function saveData() {
+        if(!Utilities.validateVatNr(customerData['vatNr'])) {
+            console.error('Not a valid VatNr');
+            return;
+        }
         const url = `${User.API_URL}customers/${customerId}/`
         fetch(url, { headers: User.getPrivateHeaders(), method: "PUT", body: JSON.stringify(customerData) })
             .then(res => res.json())
