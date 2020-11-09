@@ -1,7 +1,7 @@
 import React from 'react';
 import Login from "./pages/Login";
 import StorageProvider from "./contexts/StorageContext";
-import Narbar from './components/Navbar'
+import Navbar from './components/Navbar'
 import {Switch, Route} from "react-router-dom";
 import Home from "./pages/Home";
 import PrivateRoute from "./components/PrivateRoute";
@@ -13,7 +13,7 @@ function App() {
     return (
         <div className='container'>
             <StorageProvider>
-                <Narbar />
+                <Navbar />
                 <Switch>
                     <PrivateRoute path='/home' component={Home}/>
                     <PrivateRoute path='/customer/:id' component={DetailCustomer}/>
