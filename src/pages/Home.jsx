@@ -7,9 +7,6 @@ const Home = () => {
         <div>
             <h1>Your customers</h1>
             <CustomerList/>
-            <ul>
-                <li><Link to='/addCustomer'>Lägg till ny kund</Link></li>
-            </ul>
         </div>
     );
 };

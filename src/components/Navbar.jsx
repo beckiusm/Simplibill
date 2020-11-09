@@ -30,14 +30,22 @@ export default function Navbar() {
         <ul className='navbar-nav mr-auto'>
 
           {
-            !isAuthenticated && <li className='nav-item'>
-                                  <Link to='/' className='nav-link'>Login</Link>
-                                </li>
+            !isAuthenticated && 
+            <li className='nav-item'>
+              <Link to='/' className='nav-link'>Login</Link>
+            </li>
           }
 
           <li className='nav-item'>
             <Link to='/home' className='nav-link'>Home</Link>
           </li>
+
+          {
+            isAuthenticated &&  
+            <li className='nav-item'>
+              <Link to='/addCustomer' className='nav-link'>Add customer</Link>
+            </li>
+          }
           
         </ul>
         {
