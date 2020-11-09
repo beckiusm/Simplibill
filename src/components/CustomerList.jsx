@@ -21,10 +21,19 @@ export default function CustomerList() {
         [])
 
     return (
-        <ul className="list-group">
-            {customerData && customerData.map((customerListItem, index) => {
-                return <CustomerListItem key={index} index={index} customerListItem={customerListItem}/>
-            })}
-        </ul>
+        <table className="table">
+              <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Phone number</th>
+                    <th scope="col">Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {customerData && customerData.map((customerListItem, index) => {
+                    return <CustomerListItem key={index} index={index} customerListItem={customerListItem}/>
+                })}
+            </tbody>
+        </table>
     )
 }
