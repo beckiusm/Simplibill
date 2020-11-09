@@ -24,9 +24,11 @@ export default function Navbar() {
       <div className='collapse navbar-collapse' id='navbarSupportedContent'>
         <ul className='navbar-nav mr-auto'>
 
-          <li className='nav-item'>
-            <Link to='/' className='nav-link'>Login</Link>
-          </li>
+          {
+            !isAuthenticated && <li className='nav-item'>
+                                  <Link to='/' className='nav-link'>Login</Link>
+                                </li>
+          }
 
           <li className='nav-item'>
             <Link to='/home' className='nav-link'>Home</Link>
@@ -34,7 +36,7 @@ export default function Navbar() {
           
         </ul>
         {
-            isAuthenticated &&
+          isAuthenticated &&
           <div className='nav-item'>
               <span className='nav-item'><Tooltip content={userData.email}>Welcome {userData.firstName} {userData.lastName}</Tooltip></span>
           </div>
