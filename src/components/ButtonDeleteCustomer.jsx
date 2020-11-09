@@ -4,10 +4,10 @@ import User from "../data/User";
 
 export default function ButtonDeleteCustomer(props) {
 
-    const {setCustomerData} = useContext(StorageContext);
+    const {setCustomerListData} = useContext(StorageContext);
     async function getCustomerList() {
         const customerList = await User.fetchCustomerList();
-        setCustomerData(customerList)
+        setCustomerListData(customerList)
     }
 
     function handleDeleteCustomer(){

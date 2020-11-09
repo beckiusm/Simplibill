@@ -6,11 +6,11 @@ export default function AddCustomer(props) {
 
     const [form, setForm] = useState(null)
 
-    const {setCustomerData} = useContext(StorageContext);
+    const {setCustomerListData} = useContext(StorageContext);
 
     async function getCustomerList() {
         const customerList = await User.fetchCustomerList();
-        setCustomerData(customerList)
+        setCustomerListData(customerList)
     }
 
     function saveData() {
