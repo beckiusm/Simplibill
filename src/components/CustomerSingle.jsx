@@ -17,9 +17,9 @@ export default function CustomerSingle(props) {
   const { customer, customerId } = props
 
   return (
-    <CustomerStyled className="container text-center my-5">
-      <h1> { customer.name } </h1>
-      <div className="edit">
+    <CustomerStyled className="container my-5">
+      <h1 className="text-center"> { customer.name } </h1>
+      <div className="edit text-center">
         <Link to={`/edit/${customerId}`}>edit</Link>
       </div>
 
