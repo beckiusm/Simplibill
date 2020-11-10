@@ -18,13 +18,17 @@ export default function CustomerSingle(props) {
 
   return (
     <CustomerStyled className="container my-5">
-      <h1 className="text-center"> { customer.name } </h1>
+      <h1 className="text-center"> Customer details </h1>
       <div className="edit text-center">
         <Link to={`/edit/${customerId}`}>Edit</Link>
       </div>
 
       <table className="table">
         <tbody>
+          <tr>
+            <th>Name</th>
+            <td> { customer.name } </td>
+          </tr>
           <tr>
             <th>Organization nr.</th>
             <td> { customer.organisationNr } </td>
