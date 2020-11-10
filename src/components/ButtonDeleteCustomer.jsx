@@ -23,11 +23,12 @@ export default function ButtonDeleteCustomer(props) {
     return (
         <>
         <br></br>
-
+        <div class="col-md-8 col-lg-6 d-flex justify-content-end">
             <button className="btn btn-danger float-right" onClick={handleDeleteCustomer}>
             Remove customer
             </button>
-
+            
+        </div>
         </>
     )
 }

@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react';
 import User from "../data/User";
 import FormCustomer from '../components/FormCustomer';
-import {StorageContext} from "../contexts/StorageContext";
+import { StorageContext } from "../contexts/StorageContext";
 import Utilities from "../data/Utilities";
 export default function AddCustomer(props) {
 
     const [form, setForm] = useState(null)
 
-    const {setCustomerListData} = useContext(StorageContext);
+    const { setCustomerListData } = useContext(StorageContext);
 
     async function getCustomerList() {
         const customerList = await User.fetchCustomerList();
@@ -15,7 +15,7 @@ export default function AddCustomer(props) {
     }
 
     function saveData() {
-        if(!Utilities.validateVatNr(form['vatNr'])) {
+        if (!Utilities.validateVatNr(form['vatNr'])) {
             document.getElementById('vatNr').classList.add('is-invalid');
             console.error('Not a valid VatNr');
             return;
@@ -45,8 +45,10 @@ export default function AddCustomer(props) {
             <FormCustomer
                 handleInputChange={handleInputChange}
             />
-
-            <button className="btn btn-success float-right" onClick={saveData}>Spara</button>
-        </div>
+            
+            <div class="col-md-8 col-lg-6 d-flex justify-content-end">
+                <button className="btn btn-success float-right" onClick={saveData}>Save</button>
+                </div>
+            </div>
     );
 }

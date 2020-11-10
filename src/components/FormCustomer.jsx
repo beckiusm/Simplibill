@@ -10,11 +10,12 @@ export default function FormCustomer(props) {
     }
 
     return (
-        <div className='mt-5'>
+        <div className='mt-3'>
             <form className={'need-validation novalidate'}>
                 {detailFieldsArray.map((detailField, index) => {
                         return (
-                            <div className="input-group mb-3" key={index}>
+                            <div className="row justify-content-center">
+                            <div className="input-group mb-3 col-md-8" key={index}>
                                 <div className="input-group-prepend">
                                     <span className="input-group-text" >{firstUppercase(detailField)}</span>
                                 </div>
@@ -24,6 +25,7 @@ export default function FormCustomer(props) {
                                     Please enter a valid VatNr. SEXXXXXXXXXX. Where X is a number.
                                     </div>
                                 }
+                            </div>
                             </div>)
                     }
                 )}
