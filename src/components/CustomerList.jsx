@@ -20,7 +20,7 @@ export default function CustomerList() {
         [])
 
     return (
-        <table className="table">
+        <table className="table table-striped">
               <thead>
                 <tr>
                     <th scope="col">Name</th>
