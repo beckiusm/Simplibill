@@ -15,46 +15,34 @@ const CustomerStyled = styled.div`
 
 export default function CustomerSingle(props) {
   const { customer, customerId } = props
+  const details = {
+    'Name':             customer.name,
+    'Organization nr.': customer.organisationNr,
+    'Var nr.':          customer.vatNr,
+    'Reference':        customer.reference,
+    'PaymentTerm':      customer.paymentTerm,
+    'Website':          customer.website,
+    'E-mail':           customer.email,
+    'Phone Number':     customer.phoneNumber,
+  }
 
   return (
     <CustomerStyled className="container my-5">
       <h1 className="text-center my-5"> Customer details </h1>
+      
       <table className="table">
         <tbody>
-          <tr>
-            <th>Name</th>
-            <td> { customer.name } </td>
-          </tr>
-          <tr>
-            <th>Organization nr.</th>
-            <td> { customer.organisationNr } </td>
-          </tr>
-          <tr>
-            <th>Var nr.</th>
-            <td> { customer.vatNr } </td>
-          </tr>
-          <tr>
-            <th>Reference</th>
-            <td> { customer.reference } </td>
-          </tr>
-          <tr>
-            <th>PaymentTerm</th>
-            <td> { customer.paymentTerm } </td>
-          </tr>
-          <tr>
-            <th>Website</th>
-            <td> { customer.website } </td>
-          </tr>
-          <tr>
-            <th>E-mail</th>
-            <td> { customer.email } </td>
-          </tr>
-          <tr>
-            <th>Phone Number</th>
-            <td> { customer.phoneNumber } </td>
-          </tr>
+          {
+           Object.entries(details).map( (detail, index) => {
+             return (
+              <tr key={index}>
+                <th> { detail[0] } </th>
+                <td> { detail[1] } </td>
+              </tr>
+              )
+           })
+          }
         </tbody>
-
       </table>
 
       <div className="edit text-center">
