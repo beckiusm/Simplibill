@@ -72,7 +72,7 @@ const EditCustomer = (props) => {
                     customerData={customerData}
                 />
             }
-            <div class="col-md-8 col-lg-6 d-flex justify-content-end">
+            <div class="col-md-8 d-flex justify-content-end">
             <button className="btn btn-success" onClick={saveData}>Save</button>
             </div>
         </div>

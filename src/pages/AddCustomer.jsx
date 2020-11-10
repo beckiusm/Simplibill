@@ -46,7 +46,7 @@ export default function AddCustomer(props) {
                 handleInputChange={handleInputChange}
             />
             
-            <div class="col-md-8 col-lg-6 d-flex justify-content-end">
+            <div class="col-md-8 d-flex justify-content-end">
                 <button className="btn btn-success float-right" onClick={saveData}>Save</button>
                 </div>
             </div>
