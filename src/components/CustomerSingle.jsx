@@ -18,11 +18,7 @@ export default function CustomerSingle(props) {
 
   return (
     <CustomerStyled className="container my-5">
-      <h1 className="text-center"> Customer details </h1>
-      <div className="edit text-center">
-        <Link to={`/edit/${customerId}`}>Edit</Link>
-      </div>
-
+      <h1 className="text-center my-5"> Customer details </h1>
       <table className="table">
         <tbody>
           <tr>
@@ -60,6 +56,12 @@ export default function CustomerSingle(props) {
         </tbody>
 
       </table>
+
+      <div className="edit text-center">
+        <Link to={`/edit/${customerId}`}>
+          <button className="btn btn-warning float-right">Edit Customer</button>
+        </Link>
+      </div>
 
 
 
