@@ -20,7 +20,7 @@ export default function CustomerSingle(props) {
     'Organization nr.': customer.organisationNr,
     'Var nr.':          customer.vatNr,
     'Reference':        customer.reference,
-    'PaymentTerm':      customer.paymentTerm,
+    'Payment Term':      customer.paymentTerm,
     'Website':          customer.website,
     'E-mail':           customer.email,
     'Phone Number':     customer.phoneNumber,
@@ -28,31 +28,31 @@ export default function CustomerSingle(props) {
 
   return (
     <CustomerStyled className="container my-5">
-      <h1 className="text-center my-5"> Customer details </h1>
-      
-      <table className="table">
-        <tbody>
-          {
-           Object.entries(details).map( (detail, index) => {
-             return (
-              <tr key={index}>
-                <th> { detail[0] } </th>
-                <td> { detail[1] } </td>
-              </tr>
-              )
-           })
-          }
-        </tbody>
-      </table>
-
-      <div className="edit text-center">
-        <Link to={`/edit/${customerId}`}>
-          <button className="btn btn-warning float-right">Edit Customer</button>
-        </Link>
+      <h1 className="text-center my-5"> {customer.name} details </h1>
+      <div className="row justify-content-center">
+        <table className="table col-md-8 col-lg-6">
+          <tbody>
+            {
+            Object.entries(details).map( (detail, index) => {
+              return (
+                <tr key={index}>
+                  <th> { detail[0] } </th>
+                  <td> { detail[1] } </td>
+                </tr>
+                )
+            })
+            }
+          </tbody>
+        </table>
       </div>
-
-
-
+      <div className="row justify-content-center">
+        <div className="col-md-8 col-lg-6 d-flex justify-content-end">
+          <Link to={`/edit/${customerId}`}>
+            <button className="btn btn-warning">Edit Customer</button>
+          </Link>
+        </div>        
+      </div>
+      
     </CustomerStyled>
   )
 }
