@@ -5,7 +5,17 @@ import {StorageContext} from "../contexts/StorageContext";
 import Utilities from "../data/Utilities";
 export default function AddCustomer(props) {
 
-    const [form, setForm] = useState(null)
+    const defaultForm = { 
+        email: "",
+        name: "",
+        organisationNr: "",
+        paymentTerm: "",
+        reference: "",
+        vatNr: "",
+        website: ""
+    }
+
+    const [form, setForm] = useState(defaultForm)
 
     const {setCustomerListData} = useContext(StorageContext);
 
@@ -36,12 +46,11 @@ export default function AddCustomer(props) {
         const name = event.target.name
         const value = event.target.value
         setForm({ ...form, [name]: value })
-
     }
 
     return (
         <div>
-
+            
             <FormCustomer
                 handleInputChange={handleInputChange}
             />

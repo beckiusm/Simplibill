@@ -30,9 +30,9 @@ const EditCustomer = (props) => {
                         console.log({error: response.statusText})
                     return response.json()
                 })
-                .then( data => setCustomerData(data))
+                .then( data => setCustomerData(Utilities.nullToEmptyString(data)))
         } else {
-            setCustomerData(customer);
+            setCustomerData(Utilities.nullToEmptyString(customer));
         }
     }
     useEffect(() => {
